@@ -43,3 +43,6 @@ if __name__ == "__main__":
 
     fig.update_layout(title_text=st.text_input(label="Title", value="An easy sankey diagram"), font_size=10)
     st.write(fig)
+
+
+    st.info("This tool is based on plotly and streamlit and is available for free at https://github.com/simonvc/easysankey")
