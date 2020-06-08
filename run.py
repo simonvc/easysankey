@@ -4,22 +4,19 @@ import plotly.graph_objects as go
 if __name__ == "__main__":
 
     '''# Easy Sankey maker'''
-    '''Enter connections, e.g. "A 100 B; A 10 C; A 50 D; D 10 A"'''
 
     sankey = [
-        "A 100 B", 
-        "A 10 C",
-        "A 50 D",
-        "D 10 A"
+        "Hello 100 World", 
+        "Hello 10 C",
+        "Hello 50 D",
+        "D 10 Hello"
     ]
 
-    inputs = st.text_input("Enter connections, separated by ;") 
+    inputs = st.text_area(value="\n".join(sankey), label="Enter connections, one per line") 
 
     if inputs:
-        sankey = [i.strip() for i in inputs.split(";")]
+        sankey = [i.strip() for i in inputs.split("\n") if i]
     
-    sankey
-
 
     sksource = [w.split(" ")[0].replace("_", " ") for w in sankey]
     sktarget = [w.split(" ")[2].replace("_", " ") for w in sankey]
@@ -44,5 +41,5 @@ if __name__ == "__main__":
         ),
         link = links)])
 
-    fig.update_layout(title_text=st.text_input("Title"), font_size=10)
+    fig.update_layout(title_text=st.text_input(label="Title", value="An easy sankey diagram"), font_size=10)
     st.write(fig)
